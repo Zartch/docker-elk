@@ -1,4 +1,4 @@
-version: '3.2'
+version: '4'
 
 services:
   elasticsearch:
@@ -40,6 +40,11 @@ services:
         source: ./logstash/pipeline
         target: /usr/share/logstash/pipeline
         read_only: true
+      - type: bind
+        source: ./logstash/config/ag2.conf
+        target: /etc/logstash/conf.d/ag2.conf
+        read_only: true
+      
     ports:
       - "5000:5000/tcp"
       - "5000:5000/udp"
